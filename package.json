@@ -10,7 +10,8 @@
     "tune": "node backend/backtesting/runTuner.js",
     "backtest": "node backend/backtesting/runBacktest.js",
     "fetch-universe": "node backend/scripts/fetchUniverse.js",
-    "portfolio": "node backend/scripts/buildPortfolio.js"
+    "portfolio": "node backend/scripts/buildPortfolio.js",
+    "precompute": "node backend/scripts/precomputePortfolios.js"
   },
   "engines": {
     "node": ">=18"

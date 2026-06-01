@@ -442,9 +442,12 @@ async function buildPortfolio() {
   // Always evaluate the full large-cap universe, unless the user pasted a custom list.
   const customUniverse = $('#portfolioUniverse').value.trim();
   const scope = customUniverse ? 'your custom universe' : 'the full large-cap universe';
+  const timeNote = customUniverse
+    ? '(a live build — this can take a minute or two)'
+    : '(serving the precomputed snapshot)';
   setPortfolioStatus(
-    `<span class="spinner"></span> Screening ${scope} for a <strong>${state.risk}</strong> investor… ` +
-      `<span class="small">(this can take 1–2 minutes; results are cached after)</span>`,
+    `<span class="spinner"></span> Building a <strong>${state.risk}</strong> portfolio from ${scope}… ` +
+      `<span class="small">${timeNote}</span>`,
   );
   $('#buildPortfolioBtn').disabled = true;
   try {
@@ -487,6 +490,13 @@ function renderPortfolio(data) {
       max ${data.perSector} per sector ·
       recommended rebalancing <strong class="recommended">${esc(data.recommendedRebalance)}</strong>
       (from backtest).</p>
+    ${
+      data.precomputed
+        ? `<p class="small muted">📌 Full-universe snapshot precomputed ${esc(
+            new Date(data.generatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }),
+          )} for instant results. Paste a custom universe for a live build.</p>`
+        : ''
+    }
     <div class="tag-list">${sectorChips}</div>
   </div>`;
 

@@ -1,0 +1,239 @@
+{
+  "riskLevel": "conservative",
+  "size": 12,
+  "perSector": 3,
+  "universe": {
+    "name": "Full universe (1502 names · S&P 1500 / Russell 1000 proxy)",
+    "count": 1502,
+    "note": "Loaded 1502 tickers from data/universe/russell1000.json (S&P Composite 1500 — a superset proxy for the Russell 1000)."
+  },
+  "evaluated": 1502,
+  "analyzed": 1496,
+  "failed": 6,
+  "guardrailApplied": true,
+  "portfolio": [
+    {
+      "rank": 1,
+      "ticker": "PHM",
+      "name": "PULTEGROUP INC/MI/",
+      "sector": "Construction",
+      "industry": "Operative Builders",
+      "score": 99,
+      "rating": "Excellent",
+      "marginOfSafety": 1.4094061681492844,
+      "marginCapped": false,
+      "price": 117.41,
+      "topStrength": "Owner Earnings Growth"
+    },
+    {
+      "rank": 2,
+      "ticker": "HLI",
+      "name": "HOULIHAN LOKEY, INC.",
+      "sector": "Financials",
+      "industry": "Investment Advice",
+      "score": 97,
+      "rating": "Excellent",
+      "marginOfSafety": null,
+      "marginCapped": false,
+      "price": 140.72,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 3,
+      "ticker": "ERIE",
+      "name": "ERIE INDEMNITY CO",
+      "sector": "Financials",
+      "industry": "Insurance Agents, Brokers & Service",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": null,
+      "marginCapped": false,
+      "price": 215.55,
+      "topStrength": "Interest Coverage"
+    },
+    {
+      "rank": 4,
+      "ticker": "SFM",
+      "name": "Sprouts Farmers Market, Inc.",
+      "sector": "Consumer Discretionary",
+      "industry": "Retail-Grocery Stores",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": 0.5591282207853332,
+      "marginCapped": false,
+      "price": 79.445,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 5,
+      "ticker": "V",
+      "name": "VISA INC.",
+      "sector": "Technology",
+      "industry": "Services-Business Services, NEC",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": null,
+      "marginCapped": false,
+      "price": 319.985,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 6,
+      "ticker": "ADBE",
+      "name": "ADOBE INC.",
+      "sector": "Technology",
+      "industry": "Services-Prepackaged Software",
+      "score": 95,
+      "rating": "Excellent",
+      "marginOfSafety": 0.6347909543148922,
+      "marginCapped": false,
+      "price": 271.55,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 7,
+      "ticker": "FBP",
+      "name": "FIRST BANCORP /PR/",
+      "sector": "Financials",
+      "industry": "State Commercial Banks",
+      "score": 95,
+      "rating": "Excellent",
+      "marginOfSafety": 1.2708189209742051,
+      "marginCapped": false,
+      "price": 23.57,
+      "topStrength": "Earnings Consistency"
+    },
+    {
+      "rank": 8,
+      "ticker": "PYPL",
+      "name": "PayPal Holdings, Inc.",
+      "sector": "Technology",
+      "industry": "Services-Business Services, NEC",
+      "score": 95,
+      "rating": "Excellent",
+      "marginOfSafety": 1.9484804383036765,
+      "marginCapped": false,
+      "price": 45.975,
+      "topStrength": "Interest Coverage"
+    },
+    {
+      "rank": 9,
+      "ticker": "DECK",
+      "name": "DECKERS OUTDOOR CORP",
+      "sector": "Materials",
+      "industry": "Rubber & Plastics Footwear",
+      "score": 94,
+      "rating": "Excellent",
+      "marginOfSafety": 0.6769116229226702,
+      "marginCapped": false,
+      "price": 111.52,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 10,
+      "ticker": "LULU",
+      "name": "lululemon athletica inc.",
+      "sector": "Consumer Discretionary",
+      "industry": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+      "score": 94,
+      "rating": "Excellent",
+      "marginOfSafety": 1.6612597988239188,
+      "marginCapped": false,
+      "price": 132.36,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 11,
+      "ticker": "TOL",
+      "name": "Toll Brothers, Inc.",
+      "sector": "Construction",
+      "industry": "Operative Builders",
+      "score": 93,
+      "rating": "Excellent",
+      "marginOfSafety": 1.4572447904963615,
+      "marginCapped": false,
+      "price": 138.605,
+      "topStrength": "Interest Coverage"
+    },
+    {
+      "rank": 12,
+      "ticker": "AWK",
+      "name": "American Water Works Company, Inc.",
+      "sector": "Utilities",
+      "industry": "Water Supply",
+      "score": 92,
+      "rating": "Excellent",
+      "marginOfSafety": null,
+      "marginCapped": false,
+      "price": 122.04,
+      "topStrength": "Operating Margin Stability"
+    }
+  ],
+  "sectorCount": {
+    "Construction": 2,
+    "Financials": 3,
+    "Consumer Discretionary": 2,
+    "Technology": 3,
+    "Materials": 1,
+    "Utilities": 1
+  },
+  "alternates": [
+    {
+      "ticker": "MTG",
+      "sector": "Financials",
+      "score": 95,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "TRV",
+      "sector": "Financials",
+      "score": 94,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "FHI",
+      "sector": "Financials",
+      "score": 93,
+      "rating": "Excellent"
+    }
+  ],
+  "avgScore": 95,
+  "recommendedRebalance": "annual",
+  "diversification": {
+    "count": 12,
+    "sectors": {
+      "Construction": 0.16666666666666666,
+      "Financials": 0.25,
+      "Consumer Discretionary": 0.16666666666666666,
+      "Technology": 0.25,
+      "Materials": 0.08333333333333333,
+      "Utilities": 0.08333333333333333
+    },
+    "sectorCounts": {
+      "Construction": 2,
+      "Financials": 3,
+      "Consumer Discretionary": 2,
+      "Technology": 3,
+      "Materials": 1,
+      "Utilities": 1
+    },
+    "hhi": 0.194,
+    "effectiveSectors": 5.14,
+    "maxSector": {
+      "sector": "Financials",
+      "share": 0.25
+    },
+    "themeCounts": {
+      "financials": 3,
+      "technology": 1
+    },
+    "warnings": [],
+    "suggestions": [
+      "Underrepresented sectors to consider for balance: Healthcare, Consumer Staples, Industrials."
+    ],
+    "concentrated": false
+  },
+  "disclaimer": "Educational use only. Not financial advice. A rules-based screen of a representative universe — not a recommendation to buy.",
+  "precomputed": true,
+  "generatedAt": "2026-06-01T20:45:11.864Z"
+}

@@ -1,0 +1,257 @@
+{
+  "riskLevel": "aggressive",
+  "size": 12,
+  "perSector": 3,
+  "universe": {
+    "name": "Full universe (1502 names · S&P 1500 / Russell 1000 proxy)",
+    "count": 1502,
+    "note": "Loaded 1502 tickers from data/universe/russell1000.json (S&P Composite 1500 — a superset proxy for the Russell 1000)."
+  },
+  "evaluated": 1502,
+  "analyzed": 1496,
+  "failed": 6,
+  "guardrailApplied": true,
+  "portfolio": [
+    {
+      "rank": 1,
+      "ticker": "IBKR",
+      "name": "Interactive Brokers Group, Inc.",
+      "sector": "Financials",
+      "industry": "Security Brokers, Dealers & Flotation Companies",
+      "score": 100,
+      "rating": "Excellent",
+      "marginOfSafety": null,
+      "marginCapped": false,
+      "price": 87.4,
+      "topStrength": "Free Cash Flow Growth"
+    },
+    {
+      "rank": 2,
+      "ticker": "LULU",
+      "name": "lululemon athletica inc.",
+      "sector": "Consumer Discretionary",
+      "industry": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+      "score": 97,
+      "rating": "Excellent",
+      "marginOfSafety": 2,
+      "marginCapped": true,
+      "price": 132.36,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 3,
+      "ticker": "PJT",
+      "name": "PJT Partners Inc.",
+      "sector": "Financials",
+      "industry": "Investment Advice",
+      "score": 97,
+      "rating": "Excellent",
+      "marginOfSafety": null,
+      "marginCapped": false,
+      "price": 153.15,
+      "topStrength": "Owner Earnings Growth"
+    },
+    {
+      "rank": 4,
+      "ticker": "ADBE",
+      "name": "ADOBE INC.",
+      "sector": "Technology",
+      "industry": "Services-Prepackaged Software",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": 1.2329509147707194,
+      "marginCapped": false,
+      "price": 271.55,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 5,
+      "ticker": "DOCS",
+      "name": "Doximity, Inc.",
+      "sector": "Technology",
+      "industry": "Services-Computer Programming Services",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": 0.732520839801075,
+      "marginCapped": false,
+      "price": 22.145,
+      "topStrength": "Return on Invested Capital"
+    },
+    {
+      "rank": 6,
+      "ticker": "PHM",
+      "name": "PULTEGROUP INC/MI/",
+      "sector": "Construction",
+      "industry": "Operative Builders",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": 2,
+      "marginCapped": true,
+      "price": 117.41,
+      "topStrength": "Owner Earnings Growth"
+    },
+    {
+      "rank": 7,
+      "ticker": "TBBK",
+      "name": "Bancorp, Inc.",
+      "sector": "Financials",
+      "industry": "National Commercial Banks",
+      "score": 96,
+      "rating": "Excellent",
+      "marginOfSafety": 2,
+      "marginCapped": true,
+      "price": 54.225,
+      "topStrength": "Owner Earnings Growth"
+    },
+    {
+      "rank": 8,
+      "ticker": "DHI",
+      "name": "HORTON D R INC /DE/",
+      "sector": "Construction",
+      "industry": "Operative Builders",
+      "score": 95,
+      "rating": "Excellent",
+      "marginOfSafety": 1.7553986770663892,
+      "marginCapped": false,
+      "price": 146.55,
+      "topStrength": "Free Cash Flow Growth"
+    },
+    {
+      "rank": 9,
+      "ticker": "PAYC",
+      "name": "Paycom Software, Inc.",
+      "sector": "Technology",
+      "industry": "Services-Prepackaged Software",
+      "score": 95,
+      "rating": "Excellent",
+      "marginOfSafety": 0.8509679575101421,
+      "marginCapped": false,
+      "price": 148.18,
+      "topStrength": "Owner Earnings Growth"
+    },
+    {
+      "rank": 10,
+      "ticker": "NVR",
+      "name": "NVR INC",
+      "sector": "Construction",
+      "industry": "Operative Builders",
+      "score": 94,
+      "rating": "Excellent",
+      "marginOfSafety": 1.6125518604339995,
+      "marginCapped": false,
+      "price": 6095.96,
+      "topStrength": "Earnings Consistency"
+    },
+    {
+      "rank": 11,
+      "ticker": "CPRT",
+      "name": "COPART INC",
+      "sector": "Consumer Discretionary",
+      "industry": "Retail-Auto Dealers & Gasoline Stations",
+      "score": 93,
+      "rating": "Excellent",
+      "marginOfSafety": 0.7050794232396118,
+      "marginCapped": false,
+      "price": 32.115,
+      "topStrength": "Owner Earnings Growth"
+    },
+    {
+      "rank": 12,
+      "ticker": "WSM",
+      "name": "WILLIAMS SONOMA INC",
+      "sector": "Consumer Discretionary",
+      "industry": "Retail-Home Furniture, Furnishings & Equipment Stores",
+      "score": 93,
+      "rating": "Excellent",
+      "marginOfSafety": 0.5156331976854915,
+      "marginCapped": false,
+      "price": 201.095,
+      "topStrength": "Return on Invested Capital"
+    }
+  ],
+  "sectorCount": {
+    "Financials": 3,
+    "Consumer Discretionary": 3,
+    "Technology": 3,
+    "Construction": 3
+  },
+  "alternates": [
+    {
+      "ticker": "HLNE",
+      "sector": "Financials",
+      "score": 95,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "HLI",
+      "sector": "Financials",
+      "score": 94,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "PGR",
+      "sector": "Financials",
+      "score": 94,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "V",
+      "sector": "Technology",
+      "score": 94,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "AMP",
+      "sector": "Financials",
+      "score": 93,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "META",
+      "sector": "Technology",
+      "score": 93,
+      "rating": "Excellent"
+    },
+    {
+      "ticker": "QLYS",
+      "sector": "Technology",
+      "score": 93,
+      "rating": "Excellent"
+    }
+  ],
+  "avgScore": 96,
+  "recommendedRebalance": "annual",
+  "diversification": {
+    "count": 12,
+    "sectors": {
+      "Financials": 0.25,
+      "Consumer Discretionary": 0.25,
+      "Technology": 0.25,
+      "Construction": 0.25
+    },
+    "sectorCounts": {
+      "Financials": 3,
+      "Consumer Discretionary": 3,
+      "Technology": 3,
+      "Construction": 3
+    },
+    "hhi": 0.25,
+    "effectiveSectors": 4,
+    "maxSector": {
+      "sector": "Financials",
+      "share": 0.25
+    },
+    "themeCounts": {
+      "financials": 3,
+      "technology": 3
+    },
+    "warnings": [],
+    "suggestions": [
+      "Underrepresented sectors to consider for balance: Healthcare, Consumer Staples, Industrials."
+    ],
+    "concentrated": false
+  },
+  "disclaimer": "Educational use only. Not financial advice. A rules-based screen of a representative universe — not a recommendation to buy.",
+  "precomputed": true,
+  "generatedAt": "2026-06-01T20:46:52.762Z"
+}
