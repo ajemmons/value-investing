@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+*.log
+data/cached_api_data/*
+!data/cached_api_data/.gitkeep
+data/backtest_results/*
+!data/backtest_results/.gitkeep
+.DS_Store

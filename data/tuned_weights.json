@@ -1,0 +1,76 @@
+{
+  "weights": {
+    "conservative": {
+      "roic": 0.056710662905506554,
+      "fcfGrowth": 0.03644630709541529,
+      "ownerEarnings": 0.03583100700180825,
+      "marginStability": 0.11567358901807051,
+      "debt": 0.07850075152178267,
+      "interestCoverage": 0.12424221143376318,
+      "earningsConsistency": 0.175296175615997,
+      "shareCount": 0.23217091962632036,
+      "roe": 0.04066606966076936,
+      "valuation": 0.10446230612056683
+    },
+    "moderate": {
+      "roic": 0.22118022183703187,
+      "fcfGrowth": 0.0824264464563557,
+      "ownerEarnings": 0.09494054930646526,
+      "marginStability": 0.1291185546918029,
+      "debt": 0.04324312092765956,
+      "interestCoverage": 0.047640263944101424,
+      "earningsConsistency": 0.16544165247454215,
+      "shareCount": 0.10580517986969717,
+      "roe": 0.0671321633214333,
+      "valuation": 0.043071847170910595
+    },
+    "aggressive": {
+      "roic": 0.15566680340721994,
+      "fcfGrowth": 0.11195943528612796,
+      "ownerEarnings": 0.14239773508529852,
+      "marginStability": 0.1679851931983476,
+      "debt": 0.08140700286424012,
+      "interestCoverage": 0.025209757694699277,
+      "earningsConsistency": 0.04691337145874276,
+      "shareCount": 0.08872907096877367,
+      "roe": 0.1007523954111781,
+      "valuation": 0.07897923462537203
+    }
+  },
+  "rebalancing": {
+    "conservative": "annual",
+    "moderate": "annual",
+    "aggressive": "annual"
+  },
+  "meta": {
+    "source": "tuned",
+    "tunedAt": "2026-05-31T15:28:33.751Z",
+    "dataset": {
+      "synthetic": true,
+      "seed": 12345,
+      "startYear": 2004,
+      "endYear": 2023,
+      "nCompanies": 120,
+      "outcomeCounts": {
+        "solid": 39,
+        "mediocre": 30,
+        "blowup": 7,
+        "decline": 12,
+        "bankrupt": 4,
+        "winner": 14,
+        "merged": 14
+      },
+      "moonshots": 4,
+      "dynamicsModeled": [
+        "factor regime shifts (quality/value premia go negative for stretches)",
+        "multiple expansion/compression (price = EPS x evolving P/E)",
+        "fat-tailed mega-winners (power-law compounders)",
+        "sudden fundamentals-independent blowups",
+        "sector rotation & a shared macro/rate cycle"
+      ],
+      "disclaimer": "ILLUSTRATIVE synthetic data — not real market history. Models real-market dynamics (factor regimes, multiple re-rating, fat-tailed winners, blowups, sector rotation) and deliberately includes losers/delistings to fight survivorship bias. Benchmarks are derived from the universe itself. See docs/limitations.md.",
+      "generatedAt": "2026-05-30T18:29:30.182Z"
+    },
+    "note": "Weights tuned around value-investing priors via cross-validated, bias-penalized search on illustrative data. See docs/limitations.md."
+  }
+}

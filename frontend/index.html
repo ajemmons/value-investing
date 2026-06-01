@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b1119" />
+    <title>Financial Fundamentals Stock Evaluator</title>
+    <meta
+      name="description"
+      content="Evaluate public companies with a Buffett/Graham financial-strength methodology, adjusted by your risk level. Educational use only."
+    />
+    <link rel="preconnect" href="https://data.sec.gov" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link rel="apple-touch-icon" href="assets/logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="brand">
+        <span class="logo" role="img" aria-label="Bear logo"><img src="assets/logo.png" alt="" /></span>
+        <div class="brand-text">
+          <h1>Financial Fundamentals Stock Evaluator</h1>
+          <p class="tagline">Based on Buffett&rsquo;s ideology</p>
+        </div>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="Primary sections">
+        <button class="tab active" type="button" data-tab="analyze" role="tab" id="tabbtn-analyze" aria-controls="tab-analyze">Individual Stock Analysis</button>
+        <button class="tab" type="button" data-tab="portfolio" role="tab" id="tabbtn-portfolio" aria-controls="tab-portfolio">12-Stock Portfolio</button>
+        <button class="tab" type="button" data-tab="backtest" role="tab" id="tabbtn-backtest" aria-controls="tab-backtest">Backtesting</button>
+        <button class="tab" type="button" data-tab="methodology" role="tab" id="tabbtn-methodology" aria-controls="tab-methodology">Methodology</button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- ============================ ANALYZE TAB ============================ -->
+      <section id="tab-analyze" class="tab-panel active" role="tabpanel" aria-labelledby="tabbtn-analyze" tabindex="0">
+        <div class="intro-card">
+          <h2>Evaluate a company&rsquo;s financial strength</h2>
+          <p>
+            We score companies 0&ndash;100 across ten fundamentals &mdash; ROIC, free cash flow growth, owner
+            earnings, margin stability, debt, interest coverage, earnings consistency, share count,
+            return on equity, and valuation versus intrinsic value &mdash; then weight them according to
+            your chosen risk level. No price momentum, no hype, no analyst targets.
+          </p>
+        </div>
+
+        <form class="controls" id="analyzeControls" autocomplete="off" onsubmit="return false">
+          <fieldset class="control-group">
+            <legend class="control-label">Risk level</legend>
+            <div class="risk-selector" id="riskSelector" role="group" aria-label="Select your investing risk level">
+              <button class="risk-btn" type="button" data-risk="conservative" aria-label="Conservative risk level">
+                <strong>Conservative</strong>
+                <span>Balance sheet, durability, low downside</span>
+              </button>
+              <button class="risk-btn active" type="button" data-risk="moderate" aria-label="Moderate risk level">
+                <strong>Moderate</strong>
+                <span>Quality + reasonable growth, balanced</span>
+              </button>
+              <button class="risk-btn" type="button" data-risk="aggressive" aria-label="Aggressive risk level">
+                <strong>Aggressive</strong>
+                <span>Growth, ROIC, owner-earnings expansion</span>
+              </button>
+            </div>
+          </fieldset>
+
+          <div class="control-group">
+            <label class="control-label" for="tickerInput">Tickers <span class="control-hint">(1&ndash;25, comma or space separated)</span></label>
+            <div class="input-row">
+              <input
+                id="tickerInput"
+                type="text"
+                inputmode="text"
+                placeholder="e.g. AAPL, KO, JNJ, JPM"
+                autocomplete="off"
+                spellcheck="false"
+                aria-describedby="analyzeStatus"
+              />
+              <button id="analyzeBtn" class="btn primary" type="button">Analyze</button>
+              <button id="screenBtn" class="btn secondary" type="button" title="Evaluate a broad demo universe (or your list)">
+                Screen market
+              </button>
+            </div>
+          </div>
+
+          <details class="keys-details">
+            <summary>Optional: API keys <span class="muted">(for live prices &amp; extra data)</span></summary>
+            <p class="muted small">
+              SEC EDGAR fundamentals need no key. Keys are used only for this session and are never
+              stored on the server or in source code.
+            </p>
+            <div class="keys-grid">
+              <input id="key-fmp" type="password" placeholder="Financial Modeling Prep key" autocomplete="off" aria-label="Financial Modeling Prep API key" />
+              <input id="key-alphaVantage" type="password" placeholder="Alpha Vantage key" autocomplete="off" aria-label="Alpha Vantage API key" />
+            </div>
+          </details>
+        </form>
+
+        <div id="analyzeStatus" class="status" role="status" aria-live="polite" hidden></div>
+        <div id="diversificationPanel"></div>
+        <div id="peerPanel"></div>
+        <div id="results" class="results-grid"></div>
+        <div id="screenResults"></div>
+      </section>
+
+      <!-- =========================== PORTFOLIO TAB =========================== -->
+      <section id="tab-portfolio" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-portfolio" tabindex="0">
+        <div class="intro-card">
+          <h2>Build a 12-stock portfolio</h2>
+          <p>
+            Screens the <strong>full large-cap universe</strong> (an S&amp;P&nbsp;1500 superset proxy for
+            the Russell 1000), scores every company for your chosen risk level, and assembles the
+            <strong>12 best</strong> &mdash; capped at <strong>3 per sector</strong> to force
+            diversification. The ranking is fully risk-dependent: conservative rewards balance-sheet
+            strength and durability; aggressive rewards ROIC and cash-flow growth.
+          </p>
+        </div>
+
+        <form class="controls" id="portfolioControls" autocomplete="off" onsubmit="return false">
+          <fieldset class="control-group">
+            <legend class="control-label">Risk level</legend>
+            <div class="risk-selector" id="riskSelectorPortfolio" role="group" aria-label="Select your investing risk level">
+              <button class="risk-btn" type="button" data-risk="conservative" aria-label="Conservative risk level"><strong>Conservative</strong><span>Balance sheet, durability, low downside</span></button>
+              <button class="risk-btn active" type="button" data-risk="moderate" aria-label="Moderate risk level"><strong>Moderate</strong><span>Quality + reasonable growth, balanced</span></button>
+              <button class="risk-btn" type="button" data-risk="aggressive" aria-label="Aggressive risk level"><strong>Aggressive</strong><span>Growth, ROIC, owner-earnings expansion</span></button>
+            </div>
+          </fieldset>
+
+          <div class="control-group">
+            <div class="input-row">
+              <button id="buildPortfolioBtn" class="btn primary" type="button">Build 12-stock portfolio</button>
+              <span class="muted small build-hint" id="buildHint">
+                Evaluates the full large-cap universe &mdash; may take 1&ndash;2 minutes (cached after).
+              </span>
+            </div>
+            <p class="muted small" id="fullUniverseHint">
+              The full universe isn&rsquo;t loaded yet, so builds use a ~195-name subset for now. Run
+              <code>npm run fetch-universe</code> then <code>npm run portfolio -- --full --risk moderate</code>
+              once to load the S&amp;P Composite 1500 (a superset proxy for the Russell 1000) and pre-warm
+              the cache. See <code>docs/api_setup.md</code>.
+            </p>
+          </div>
+
+          <details class="keys-details">
+            <summary>Advanced: custom universe <span class="muted">(optional)</span></summary>
+            <p class="muted small">Paste your own tickers (space/comma separated) to screen instead of the default subset.</p>
+            <label class="sr-only" for="portfolioUniverse">Custom ticker universe</label>
+            <textarea id="portfolioUniverse" class="universe-input" rows="2" spellcheck="false"
+              placeholder="e.g. AAPL MSFT NVDA JNJ LLY KO PEP JPM XOM CAT NEE PLD"></textarea>
+          </details>
+        </form>
+
+        <div id="portfolioStatus" class="status" role="status" aria-live="polite" hidden></div>
+        <div id="portfolioSummary"></div>
+        <div id="portfolioDiversification"></div>
+        <div id="portfolioResults"></div>
+      </section>
+
+      <!-- =========================== BACKTEST TAB =========================== -->
+      <section id="tab-backtest" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-backtest" tabindex="0">
+        <div class="intro-card">
+          <h2>Backtesting &amp; weight tuning</h2>
+          <p>
+            Scoring weights for each risk level are tuned by a bias-aware backtesting engine that
+            tests rolling time windows, compares to the S&amp;P 500, penalizes sector concentration
+            and over-reliance on a few extreme winners, and compares rebalancing methods. Read the
+            limitations carefully &mdash; the bundled run uses <strong>illustrative synthetic data</strong>.
+          </p>
+        </div>
+        <div id="backtestContent" class="status" role="status" aria-live="polite">Loading backtest report&hellip;</div>
+      </section>
+
+      <!-- ========================= METHODOLOGY TAB ========================= -->
+      <section id="tab-methodology" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-methodology" tabindex="0">
+        <div class="intro-card">
+          <h2>Methodology</h2>
+          <p>How each metric is scored and how risk levels reshape the weighting.</p>
+        </div>
+        <div id="methodologyContent"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="disclaimer">
+        <span aria-hidden="true">⚠️</span> <strong>Disclaimer:</strong> This tool is for <strong>educational purposes only</strong>
+        and is <strong>not financial advice</strong>. Data may be estimated, delayed, or incomplete.
+        Backtests use illustrative data and do not predict future results. Do your own research and
+        consult a licensed professional before investing.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

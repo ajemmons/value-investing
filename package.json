@@ -1,0 +1,31 @@
+{
+  "name": "buffett-graham-evaluator",
+  "version": "1.0.0",
+  "description": "A Buffett/Graham-style financial-strength stock evaluator with risk-adjusted scoring, DCF intrinsic value, diversification checks, and a bias-aware backtesting engine. Educational use only — not financial advice.",
+  "type": "module",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "tune": "node backend/backtesting/runTuner.js",
+    "backtest": "node backend/backtesting/runBacktest.js",
+    "fetch-universe": "node backend/scripts/fetchUniverse.js",
+    "portfolio": "node backend/scripts/buildPortfolio.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "keywords": [
+    "value-investing",
+    "buffett",
+    "graham",
+    "dcf",
+    "backtesting",
+    "stock-analysis"
+  ],
+  "license": "MIT"
+}
