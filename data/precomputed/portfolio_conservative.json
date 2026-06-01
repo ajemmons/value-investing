@@ -20,7 +20,7 @@
       "industry": "Operative Builders",
       "score": 99,
       "rating": "Excellent",
-      "marginOfSafety": 1.4094061681492844,
+      "marginOfSafety": 1.2252774574168925,
       "marginCapped": false,
       "price": 117.41,
       "topStrength": "Owner Earnings Growth"
@@ -59,7 +59,7 @@
       "industry": "Retail-Grocery Stores",
       "score": 96,
       "rating": "Excellent",
-      "marginOfSafety": 0.5591282207853332,
+      "marginOfSafety": 0.5116430722618324,
       "marginCapped": false,
       "price": 79.445,
       "topStrength": "Return on Invested Capital"
@@ -85,7 +85,7 @@
       "industry": "Services-Prepackaged Software",
       "score": 95,
       "rating": "Excellent",
-      "marginOfSafety": 0.6347909543148922,
+      "marginOfSafety": 0.6398626093523465,
       "marginCapped": false,
       "price": 271.55,
       "topStrength": "Return on Invested Capital"
@@ -98,7 +98,7 @@
       "industry": "State Commercial Banks",
       "score": 95,
       "rating": "Excellent",
-      "marginOfSafety": 1.2708189209742051,
+      "marginOfSafety": 1.3204866101179302,
       "marginCapped": false,
       "price": 23.57,
       "topStrength": "Earnings Consistency"
@@ -111,7 +111,7 @@
       "industry": "Services-Business Services, NEC",
       "score": 95,
       "rating": "Excellent",
-      "marginOfSafety": 1.9484804383036765,
+      "marginOfSafety": 1.8274533711644212,
       "marginCapped": false,
       "price": 45.975,
       "topStrength": "Interest Coverage"
@@ -150,7 +150,7 @@
       "industry": "Operative Builders",
       "score": 93,
       "rating": "Excellent",
-      "marginOfSafety": 1.4572447904963615,
+      "marginOfSafety": 1.3544264224269145,
       "marginCapped": false,
       "price": 138.605,
       "topStrength": "Interest Coverage"
@@ -235,5 +235,5 @@
   },
   "disclaimer": "Educational use only. Not financial advice. A rules-based screen of a representative universe — not a recommendation to buy.",
   "precomputed": true,
-  "generatedAt": "2026-06-01T20:45:11.864Z"
+  "generatedAt": "2026-06-01T22:01:57.254Z"
 }

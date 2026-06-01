@@ -20,7 +20,7 @@
       "industry": "Services-Prepackaged Software",
       "score": 97,
       "rating": "Excellent",
-      "marginOfSafety": 0.8926345454806119,
+      "marginOfSafety": 0.8985027311124771,
       "marginCapped": false,
       "price": 271.55,
       "topStrength": "Return on Invested Capital"
@@ -46,7 +46,7 @@
       "industry": "Operative Builders",
       "score": 97,
       "rating": "Excellent",
-      "marginOfSafety": 1.7743721964307766,
+      "marginOfSafety": 1.5613250852305631,
       "marginCapped": false,
       "price": 117.41,
       "topStrength": "Owner Earnings Growth"
@@ -124,7 +124,7 @@
       "industry": "Retail-Grocery Stores",
       "score": 94,
       "rating": "Excellent",
-      "marginOfSafety": 0.7956583281253906,
+      "marginOfSafety": 0.74080992829886,
       "marginCapped": false,
       "price": 79.445,
       "topStrength": "Return on Invested Capital"
@@ -137,7 +137,7 @@
       "industry": "Retail-Building Materials, Hardware, Garden Supply",
       "score": 94,
       "rating": "Excellent",
-      "marginOfSafety": 0.5309196513230379,
+      "marginOfSafety": 0.5089018402932823,
       "marginCapped": false,
       "price": 31.45,
       "topStrength": "Return on Invested Capital"
@@ -150,23 +150,23 @@
       "industry": "Security Brokers, Dealers & Flotation Companies",
       "score": 93,
       "rating": "Excellent",
-      "marginOfSafety": 0.5339158337099408,
+      "marginOfSafety": 0.8389823164012074,
       "marginCapped": false,
       "price": 130.68,
       "topStrength": "Return on Invested Capital"
     },
     {
       "rank": 12,
-      "ticker": "EXP",
-      "name": "EAGLE MATERIALS INC",
-      "sector": "Materials",
-      "industry": "Cement, Hydraulic",
-      "score": 92,
+      "ticker": "XPEL",
+      "name": "XPEL, Inc.",
+      "sector": "Industrials",
+      "industry": "Coating, Engraving & Allied Services",
+      "score": 93,
       "rating": "Excellent",
-      "marginOfSafety": 0.40300134600212334,
+      "marginOfSafety": 0.2298706235028405,
       "marginCapped": false,
-      "price": 216.15,
-      "topStrength": "Operating Margin Stability"
+      "price": 44.295,
+      "topStrength": "Free Cash Flow Growth"
     }
   ],
   "sectorCount": {
@@ -174,9 +174,16 @@
     "Consumer Discretionary": 3,
     "Construction": 1,
     "Financials": 3,
-    "Materials": 2
+    "Materials": 1,
+    "Industrials": 1
   },
   "alternates": [
+    {
+      "ticker": "META",
+      "sector": "Technology",
+      "score": 94,
+      "rating": "Excellent"
+    },
     {
       "ticker": "PAYC",
       "sector": "Technology",
@@ -196,7 +203,7 @@
       "rating": "Excellent"
     },
     {
-      "ticker": "META",
+      "ticker": "AMAT",
       "sector": "Technology",
       "score": 93,
       "rating": "Excellent"
@@ -212,18 +219,6 @@
       "sector": "Technology",
       "score": 93,
       "rating": "Excellent"
-    },
-    {
-      "ticker": "AMAT",
-      "sector": "Technology",
-      "score": 92,
-      "rating": "Excellent"
-    },
-    {
-      "ticker": "CPRT",
-      "sector": "Consumer Discretionary",
-      "score": 92,
-      "rating": "Excellent"
     }
   ],
   "avgScore": 95,
@@ -235,17 +230,19 @@
       "Consumer Discretionary": 0.25,
       "Construction": 0.08333333333333333,
       "Financials": 0.25,
-      "Materials": 0.16666666666666666
+      "Materials": 0.08333333333333333,
+      "Industrials": 0.08333333333333333
     },
     "sectorCounts": {
       "Technology": 3,
       "Consumer Discretionary": 3,
       "Construction": 1,
       "Financials": 3,
-      "Materials": 2
+      "Materials": 1,
+      "Industrials": 1
     },
-    "hhi": 0.222,
-    "effectiveSectors": 4.5,
+    "hhi": 0.208,
+    "effectiveSectors": 4.8,
     "maxSector": {
       "sector": "Technology",
       "share": 0.25
@@ -256,11 +253,11 @@
     },
     "warnings": [],
     "suggestions": [
-      "Underrepresented sectors to consider for balance: Healthcare, Consumer Staples, Industrials."
+      "Underrepresented sectors to consider for balance: Healthcare, Consumer Staples, Energy & Materials."
     ],
     "concentrated": false
   },
   "disclaimer": "Educational use only. Not financial advice. A rules-based screen of a representative universe — not a recommendation to buy.",
   "precomputed": true,
-  "generatedAt": "2026-06-01T20:46:02.308Z"
+  "generatedAt": "2026-06-01T22:02:47.468Z"
 }

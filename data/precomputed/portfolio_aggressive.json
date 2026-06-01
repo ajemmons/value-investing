@@ -59,7 +59,7 @@
       "industry": "Services-Prepackaged Software",
       "score": 96,
       "rating": "Excellent",
-      "marginOfSafety": 1.2329509147707194,
+      "marginOfSafety": 1.2398704059583787,
       "marginCapped": false,
       "price": 271.55,
       "topStrength": "Return on Invested Capital"
@@ -111,7 +111,7 @@
       "industry": "Operative Builders",
       "score": 95,
       "rating": "Excellent",
-      "marginOfSafety": 1.7553986770663892,
+      "marginOfSafety": 1.4462570257696616,
       "marginCapped": false,
       "price": 146.55,
       "topStrength": "Free Cash Flow Growth"
@@ -124,7 +124,7 @@
       "industry": "Services-Prepackaged Software",
       "score": 95,
       "rating": "Excellent",
-      "marginOfSafety": 0.8509679575101421,
+      "marginOfSafety": 0.9158732681949324,
       "marginCapped": false,
       "price": 148.18,
       "topStrength": "Owner Earnings Growth"
@@ -137,7 +137,7 @@
       "industry": "Operative Builders",
       "score": 94,
       "rating": "Excellent",
-      "marginOfSafety": 1.6125518604339995,
+      "marginOfSafety": 1.4297176778965772,
       "marginCapped": false,
       "price": 6095.96,
       "topStrength": "Earnings Consistency"
@@ -150,7 +150,7 @@
       "industry": "Retail-Auto Dealers & Gasoline Stations",
       "score": 93,
       "rating": "Excellent",
-      "marginOfSafety": 0.7050794232396118,
+      "marginOfSafety": 0.7058620078153968,
       "marginCapped": false,
       "price": 32.115,
       "topStrength": "Owner Earnings Growth"
@@ -163,7 +163,7 @@
       "industry": "Retail-Home Furniture, Furnishings & Equipment Stores",
       "score": 93,
       "rating": "Excellent",
-      "marginOfSafety": 0.5156331976854915,
+      "marginOfSafety": 0.515767223959223,
       "marginCapped": false,
       "price": 201.095,
       "topStrength": "Return on Invested Capital"
@@ -189,6 +189,12 @@
       "rating": "Excellent"
     },
     {
+      "ticker": "META",
+      "sector": "Technology",
+      "score": 94,
+      "rating": "Excellent"
+    },
+    {
       "ticker": "PGR",
       "sector": "Financials",
       "score": 94,
@@ -203,12 +209,6 @@
     {
       "ticker": "AMP",
       "sector": "Financials",
-      "score": 93,
-      "rating": "Excellent"
-    },
-    {
-      "ticker": "META",
-      "sector": "Technology",
       "score": 93,
       "rating": "Excellent"
     },
@@ -253,5 +253,5 @@
   },
   "disclaimer": "Educational use only. Not financial advice. A rules-based screen of a representative universe — not a recommendation to buy.",
   "precomputed": true,
-  "generatedAt": "2026-06-01T20:46:52.762Z"
+  "generatedAt": "2026-06-01T22:03:38.113Z"
 }
