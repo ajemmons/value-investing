@@ -612,14 +612,15 @@ function portfolioDetailCard(r) {
   const v = r.valuation || {};
   const mos = v.marginOfSafety;
   const pe = v.peContext?.pe;
+  const price = isNum(v.price) ? v.price : r.price;
   const valLine = v.available
-    ? `Intrinsic value (base) <strong>${money(v.scenarios?.base)}</strong> · ` +
+    ? `Price <strong>${money(price)}</strong> · Intrinsic value (base) <strong>${money(v.scenarios?.base)}</strong> · ` +
       `Margin of safety <strong class="${isNum(mos) && mos >= 0 ? 'pos' : 'neg'}">${
         v.marginCapped ? '&ge;200%' : pct(mos, 0)
       }</strong> · P/E ${isNum(pe) ? num(pe, 1) : '—'}${
         v.peContext?.sectorPe ? ` <span class="muted">(sector ~${v.peContext.sectorPe})</span>` : ''
       }`
-    : 'Valuation unavailable.';
+    : `Price ${money(price)} · valuation unavailable.`;
 
   return `<div class="pd-card">
     <div class="pd-grid">${metrics}</div>
