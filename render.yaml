@@ -12,7 +12,11 @@ services:
     runtime: node
     plan: free
     branch: main
-    buildCommand: npm install
+    # `npm run tune` regenerates the tuned weights AND the backtest report
+    # (data/backtest_results/report.json is git-ignored, so it must be built on
+    # the host for the Backtesting tab to work). It is fast and uses only the
+    # bundled synthetic data — no SEC calls.
+    buildCommand: npm install && npm run tune
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
