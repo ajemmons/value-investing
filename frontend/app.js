@@ -568,9 +568,8 @@ async function togglePortfolioDetail(row) {
       body: JSON.stringify({ tickers: ticker, riskLevel: risk, keys: collectKeys() }),
     });
     const r = data.results?.[0];
-    body.innerHTML = '';
     if (r && r.ok) {
-      body.appendChild(scorecard(r));
+      body.innerHTML = portfolioDetailCard(r);
     } else {
       body.innerHTML = `<p class="muted small">Could not load details for ${esc(ticker)}: ${esc(r?.error?.message || 'unavailable')}</p>`;
     }
@@ -578,6 +577,37 @@ async function togglePortfolioDetail(row) {
   } catch (err) {
     body.innerHTML = `<p class="status error">Error loading ${esc(ticker)}: ${esc(err.message)}</p>`;
   }
+}
+
+// Compact, abbreviated detail shown when a portfolio row is expanded:
+// the ten metric scores in a tight grid + a one-line valuation summary.
+function portfolioDetailCard(r) {
+  const metrics = (r.breakdown || [])
+    .map((b) => {
+      const has = b.available && isNum(b.score);
+      return `<div class="pd-metric${has ? '' : ' na'}">
+        <span class="pd-metric-label">${esc(b.label)}</span>
+        <span class="pd-metric-score" style="color:${scoreColor(b.score)}">${has ? b.score : 'N/A'}</span>
+      </div>`;
+    })
+    .join('');
+
+  const v = r.valuation || {};
+  const mos = v.marginOfSafety;
+  const pe = v.peContext?.pe;
+  const valLine = v.available
+    ? `Intrinsic value (base) <strong>${money(v.scenarios?.base)}</strong> · ` +
+      `Margin of safety <strong class="${isNum(mos) && mos >= 0 ? 'pos' : 'neg'}">${
+        v.marginCapped ? '&ge;200%' : pct(mos, 0)
+      }</strong> · P/E ${isNum(pe) ? num(pe, 1) : '—'}${
+        v.peContext?.sectorPe ? ` <span class="muted">(sector ~${v.peContext.sectorPe})</span>` : ''
+      }`
+    : 'Valuation unavailable.';
+
+  return `<div class="pd-card">
+    <div class="pd-grid">${metrics}</div>
+    <div class="pd-val small">${valLine}</div>
+  </div>`;
 }
 
 // Delegated open/close (click + keyboard) for holding rows.

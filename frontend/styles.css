@@ -948,6 +948,42 @@ main {
   background: var(--card);
 }
 
+/* Compact (abbreviated) expanded detail */
+.pd-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 0.9rem 1.1rem;
+}
+.pd-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 1.6rem;
+}
+.pd-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.34rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.pd-metric-label {
+  color: var(--text-dim);
+}
+.pd-metric-score {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.pd-metric.na {
+  opacity: 0.5;
+}
+.pd-val {
+  margin-top: 0.75rem;
+  color: var(--text-dim);
+}
+
 /* 9. ----------------------------------------------- backtest & methodology */
 .bt-grid {
   display: grid;
