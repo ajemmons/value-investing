@@ -914,6 +914,40 @@ main {
   font-weight: 700;
 }
 
+/* Expandable holding rows (Portfolio Builder) */
+.holding-row {
+  cursor: pointer;
+}
+.holding-row:hover td {
+  background: rgba(76, 141, 255, 0.06);
+}
+.holding-row.expanded td {
+  background: rgba(76, 141, 255, 0.08);
+}
+.row-caret {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--muted);
+  transition: transform var(--ease);
+}
+.holding-row.expanded .row-caret {
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+.holding-detail > td {
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+.holding-detail-body {
+  padding: 1rem;
+}
+/* The expanded scorecard sits full-width inside the row, not in the 2-col grid */
+.holding-detail-body .scorecard {
+  box-shadow: none;
+  background: var(--card);
+}
+
 /* 9. ----------------------------------------------- backtest & methodology */
 .bt-grid {
   display: grid;

@@ -504,11 +504,11 @@ function renderPortfolio(data) {
   const divHost = $('#portfolioDiversification');
   renderDiversificationInto(divHost, data.diversification);
 
-  // Holdings table.
+  // Holdings table — each row is clickable to expand a full analyzer scorecard.
   const rows = data.portfolio
     .map(
-      (p) => `<tr>
-      <td>${p.rank}</td>
+      (p) => `<tr class="holding-row" data-ticker="${esc(p.ticker)}" data-risk="${esc(data.riskLevel)}" tabindex="0" role="button" aria-expanded="false">
+      <td><span class="row-caret" aria-hidden="true">▸</span>${p.rank}</td>
       <td><strong>${esc(p.ticker)}</strong><br><span class="muted small">${esc(p.name || '')}</span></td>
       <td>${esc(p.sector || '')}</td>
       <td class="num" style="color:${scoreColor(p.score)};font-weight:650">${p.score ?? '—'}</td>
@@ -516,7 +516,8 @@ function renderPortfolio(data) {
       <td class="num ${isNum(p.marginOfSafety) && p.marginOfSafety >= 0 ? 'pos' : 'neg'}">${p.marginCapped ? '&ge;200%' : pct(p.marginOfSafety, 0)}</td>
       <td class="num">${money(p.price)}</td>
       <td class="small muted">${esc(p.topStrength || '')}</td>
-    </tr>`,
+    </tr>
+    <tr class="holding-detail" hidden><td colspan="8"><div class="holding-detail-body" data-loaded="false"></div></td></tr>`,
     )
     .join('');
 
@@ -532,12 +533,65 @@ function renderPortfolio(data) {
 
   $('#portfolioResults').innerHTML = `<div class="panel">
     <h3>Holdings</h3>
+    <p class="small muted">Click any company to expand its full metric breakdown.</p>
     <table class="data-table">
       <thead><tr><th>#</th><th>Company</th><th>Sector</th><th class="num">Score</th><th>Rating</th><th class="num">Margin of safety</th><th class="num">Price</th><th>Top strength</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
   </div>${alternates}`;
 }
+
+// Expand/collapse a holding row to show the full analyzer scorecard (lazy-loaded).
+async function togglePortfolioDetail(row) {
+  const detail = row.nextElementSibling;
+  if (!detail || !detail.classList.contains('holding-detail')) return;
+  const body = detail.querySelector('.holding-detail-body');
+
+  if (!detail.hidden) {
+    detail.hidden = true;
+    row.classList.remove('expanded');
+    row.setAttribute('aria-expanded', 'false');
+    return;
+  }
+  detail.hidden = false;
+  row.classList.add('expanded');
+  row.setAttribute('aria-expanded', 'true');
+
+  if (body.dataset.loaded === 'true') return; // already fetched
+  const ticker = row.dataset.ticker;
+  const risk = row.dataset.risk || state.risk;
+  body.innerHTML = `<div class="status"><span class="spinner"></span> Loading ${esc(ticker)} details…</div>`;
+  try {
+    const data = await api('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tickers: ticker, riskLevel: risk, keys: collectKeys() }),
+    });
+    const r = data.results?.[0];
+    body.innerHTML = '';
+    if (r && r.ok) {
+      body.appendChild(scorecard(r));
+    } else {
+      body.innerHTML = `<p class="muted small">Could not load details for ${esc(ticker)}: ${esc(r?.error?.message || 'unavailable')}</p>`;
+    }
+    body.dataset.loaded = 'true';
+  } catch (err) {
+    body.innerHTML = `<p class="status error">Error loading ${esc(ticker)}: ${esc(err.message)}</p>`;
+  }
+}
+
+// Delegated open/close (click + keyboard) for holding rows.
+document.addEventListener('click', (e) => {
+  const row = e.target.closest('.holding-row');
+  if (row) togglePortfolioDetail(row);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const row = e.target.closest('.holding-row');
+  if (!row) return;
+  e.preventDefault();
+  togglePortfolioDetail(row);
+});
 
 // ---- backtest dashboard ----------------------------------------------------
 let backtestLoaded = false;
