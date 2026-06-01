@@ -26,6 +26,7 @@ export function buildPortfolioResponse(results, { riskLevel, size = 12, perSecto
     name: r.name,
     sector: r.sector,
     industry: r.industry,
+    cyclicalTheme: r.cyclicalTheme ?? null, // needed to re-derive diversification on a slice
     score: r.score,
     rating: r.rating,
     marginOfSafety: r.valuation?.marginOfSafety ?? null,
@@ -70,4 +71,36 @@ export function buildPortfolioResponse(results, { riskLevel, size = 12, perSecto
     diversification,
     disclaimer: DISCLAIMER,
   };
+}
+
+/**
+ * Slice a (precomputed) portfolio response down to `size` holdings.
+ *
+ * The greedy top-N selection is prefix-consistent — the size-N portfolio is
+ * exactly the first N names of a larger top-M selection (same score order, same
+ * per-sector cap) — so we can precompute a big list once and serve any smaller
+ * size instantly, recomputing only the lightweight summary fields.
+ */
+export function slicePortfolioResponse(pre, size) {
+  const n = Math.max(1, Math.min(size, pre.portfolio.length));
+  const portfolio = pre.portfolio.slice(0, n).map((p, i) => ({ ...p, rank: i + 1 }));
+
+  const sectorCount = {};
+  for (const p of portfolio) sectorCount[p.sector] = (sectorCount[p.sector] || 0) + 1;
+
+  const avgScore = portfolio.length
+    ? Math.round(portfolio.reduce((s, p) => s + (p.score || 0), 0) / portfolio.length)
+    : null;
+
+  const diversification = analyzeDiversification(
+    portfolio.map((p) => ({
+      ticker: p.ticker,
+      sector: p.sector,
+      cyclicalTheme: p.cyclicalTheme,
+      score: p.score,
+    })),
+    { maxSectorShare: ((pre.perSector || 3) + 0.01) / n },
+  );
+
+  return { ...pre, size: n, portfolio, sectorCount, avgScore, diversification };
 }

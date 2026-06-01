@@ -26,7 +26,9 @@ async function main() {
   for (const riskLevel of RISK_LEVELS) {
     const t0 = Date.now();
     const results = await mapLimit(tickers, 6, (t) => analyzeTicker(t, riskLevel));
-    const response = buildPortfolioResponse(results, { riskLevel, size: 12, perSector: 3, universeMeta: meta });
+    // Precompute a larger ranked list (top 25) so the live site can serve any
+    // user-chosen size up to 25 instantly by slicing — see slicePortfolioResponse.
+    const response = buildPortfolioResponse(results, { riskLevel, size: 25, perSector: 3, universeMeta: meta });
     response.precomputed = true;
     response.generatedAt = new Date().toISOString();
     savePrecomputedPortfolio(riskLevel, response);

@@ -438,6 +438,29 @@ main {
   align-self: center;
 }
 
+/* Number-of-companies dropdown */
+.size-select {
+  background: var(--card-2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.72rem 2.2rem 0.72rem 0.9rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394a6b8' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.size-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--ring);
+}
+
 /* Disclosure / API keys */
 .keys-details {
   margin-top: var(--sp-4);

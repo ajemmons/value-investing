@@ -14,7 +14,7 @@ import { mapLimit } from '../utils/concurrency.js';
 import { analyzeTicker } from '../services/analyzer.js';
 import { buildPeerComparison } from '../services/peerComparison.js';
 import { analyzeDiversification } from '../models/diversification.js';
-import { buildPortfolioResponse } from '../services/portfolioBuilder.js';
+import { buildPortfolioResponse, slicePortfolioResponse } from '../services/portfolioBuilder.js';
 import { loadPrecomputedPortfolio } from '../services/precomputed.js';
 import { resolveUniverse, hasFullUniverse } from '../services/universe.js';
 import { loadWeights } from '../models/weights.js';
@@ -213,7 +213,12 @@ router.post('/portfolio', async (req, res) => {
     const isDefaultFull = !raw.trim() && req.body?.full !== false;
     if (isDefaultFull && req.body?.fresh !== true) {
       const pre = loadPrecomputedPortfolio(riskLevel);
-      if (pre) return res.json(pre);
+      if (pre) {
+        // The precomputed list holds the top ~25; slice it to the requested size
+        // (prefix-consistent), or serve it whole if they want at least that many.
+        const have = pre.portfolio?.length || 0;
+        return res.json(size < have ? slicePortfolioResponse(pre, size) : pre);
+      }
     }
 
     const keys = resolveKeys(req.body?.keys || {});

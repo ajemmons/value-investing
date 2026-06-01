@@ -456,7 +456,7 @@ async function buildPortfolio() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         riskLevel: state.risk,
-        size: 12,
+        size: parseInt($('#portfolioSize')?.value, 10) || 12,
         perSector: 3,
         full: !customUniverse,
         universe: customUniverse || undefined,

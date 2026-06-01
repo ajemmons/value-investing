@@ -28,7 +28,7 @@
       </div>
       <nav class="tabs" role="tablist" aria-label="Primary sections">
         <button class="tab active" type="button" data-tab="analyze" role="tab" id="tabbtn-analyze" aria-controls="tab-analyze">Individual Stock Analysis</button>
-        <button class="tab" type="button" data-tab="portfolio" role="tab" id="tabbtn-portfolio" aria-controls="tab-portfolio">12-Stock Portfolio</button>
+        <button class="tab" type="button" data-tab="portfolio" role="tab" id="tabbtn-portfolio" aria-controls="tab-portfolio">Portfolio Builder</button>
         <button class="tab" type="button" data-tab="backtest" role="tab" id="tabbtn-backtest" aria-controls="tab-backtest">Backtesting</button>
         <button class="tab" type="button" data-tab="methodology" role="tab" id="tabbtn-methodology" aria-controls="tab-methodology">Methodology</button>
       </nav>
@@ -108,13 +108,13 @@
       <!-- =========================== PORTFOLIO TAB =========================== -->
       <section id="tab-portfolio" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-portfolio" tabindex="0">
         <div class="intro-card">
-          <h2>Build a 12-stock portfolio</h2>
+          <h2>Portfolio builder</h2>
           <p>
             Rates the <strong>full large-cap universe</strong>, scores every company based on the
-            chosen risk level, and then assembles the <strong>12 best</strong> companies. This is
-            capped at <strong>three companies per sector</strong> to force diversification. Additional
-            stocks that did not make the cut because of sector limits are displayed below the twelve
-            selected.
+            chosen risk level, and then assembles the <strong>best companies</strong> &mdash; you choose
+            how many. This is capped at <strong>three companies per sector</strong> to force
+            diversification. Additional stocks that did not make the cut because of sector limits are
+            displayed below the selected ones.
           </p>
         </div>
 
@@ -129,8 +129,18 @@
           </fieldset>
 
           <div class="control-group">
+            <label class="control-label" for="portfolioSize">Number of companies</label>
             <div class="input-row">
-              <button id="buildPortfolioBtn" class="btn primary" type="button">Build 12-stock portfolio</button>
+              <select id="portfolioSize" class="size-select" aria-label="Number of companies in the portfolio">
+                <option value="5">5</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12" selected>12</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+              </select>
+              <button id="buildPortfolioBtn" class="btn primary" type="button">Build portfolio</button>
               <span class="muted small build-hint" id="buildHint">
                 Evaluates the full large-cap universe &mdash; may take 1&ndash;2 minutes (cached after).
               </span>
