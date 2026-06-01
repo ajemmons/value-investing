@@ -76,6 +76,24 @@ before writing `data/tuned_weights.json`.
 | `npm start` | Run the server |
 | `npm run dev` | Run with auto-restart |
 | `npm run tune` | Tune weights + generate the backtest report |
+| `npm run fetch-universe` | Load the full ~1,500-name large-cap universe |
+| `npm run portfolio -- --full --risk moderate` | Build a portfolio + pre-warm the cache offline |
+
+## Deploy (live website)
+
+This is a Node/Express app, so it needs a host that **runs Node** — GitHub Pages
+will not work (it serves static files only and can't run the backend). A
+[`render.yaml`](render.yaml) blueprint is included for [Render](https://render.com):
+
+1. Push this repo to GitHub.
+2. On Render: **New + → Blueprint**, select the repo (it reads `render.yaml`).
+3. When prompted, set `SEC_USER_AGENT` to `value-investing/1.0 (your-email@example.com)`.
+4. Deploy. You get a public URL; every push to `main` auto-redeploys.
+
+The response cache is git-ignored, so a fresh host rebuilds it from SEC on demand
+(individual analysis is instant; the first full-universe build is slower). Render's
+free tier sleeps after inactivity (first request wakes it in ~30–60 s). Other Node
+hosts (Railway, Fly.io) work the same way with build `npm install` / start `npm start`.
 
 ## Disclaimer
 

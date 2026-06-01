@@ -1,0 +1,22 @@
+# Render deployment blueprint.
+# Deploy: push this repo to GitHub, then on render.com choose
+# "New +" -> "Blueprint" and pick this repo. Render reads this file.
+#
+# The Node server reads process.env.PORT (Render sets it automatically), serves
+# the frontend, and exposes the /api endpoints. SEC EDGAR needs a descriptive
+# User-Agent with contact info — set SEC_USER_AGENT when prompted (sync:false
+# keeps your email out of the repo).
+services:
+  - type: web
+    name: value-investing
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: SEC_USER_AGENT
+        sync: false # enter "value-investing/1.0 (your-email@example.com)" in the dashboard
