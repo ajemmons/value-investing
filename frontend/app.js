@@ -632,16 +632,16 @@ function backtestCard(p) {
 
 // ---- methodology -----------------------------------------------------------
 const METRIC_DOCS = [
-  ['ROIC', 'NOPAT ÷ invested capital. The clearest signal of a durable competitive advantage — high, stable ROIC is the hallmark of a Buffett-quality business.'],
-  ['Free cash flow growth', 'Compound annual growth of FCF (operating cash flow − capex), measured between 3-year averaged endpoints so a single peak or trough year can\'t skew the trend, and gated by how often FCF was positive. Growth off a shaky base is discounted.'],
-  ['Owner earnings', "Buffett's measure: net income + D&A − maintenance capex. We approximate maintenance capex as the lesser of capex and D&A."],
-  ['Operating margin stability', 'Low coefficient of variation in operating margin signals pricing power and predictable economics; a bonus rewards structurally high margins.'],
-  ['Debt levels', 'Debt/equity and net-debt/EBITDA combined. Net cash scores best; heavy leverage is penalized regardless of profitability.'],
-  ['Interest coverage', 'EBIT ÷ interest expense. High coverage means the business comfortably services its debt even in a downturn.'],
-  ['Earnings consistency', 'Share of years with positive earnings, adjusted for steady revenue. Erratic or shrinking earnings are penalized.'],
-  ['Share count trend', 'Buybacks (a shrinking share count) reward shareholders; persistent dilution is a red flag.'],
-  ['Return on equity', 'Net income ÷ equity, capped so leverage-driven ROE is not over-rewarded (debt is scored separately).'],
-  ['Valuation vs intrinsic value', 'Margin of safety from a two-stage DCF, nudged by a CONTEXTUAL P/E read — never rewarding a low P/E or punishing a high one in isolation.'],
+  ['Return on invested capital (ROIC)', 'Measures how efficiently a company turns invested capital (debt + equity) into operating profit. A consistently high ROIC ~15% or more signals a genuine competitive advantage. The business earns strong returns on every dollar it deploys, which rivals find hard to replicate.'],
+  ['Free cash flow growth', 'Free cash flow is the cash left after operating costs and the capital spending needed to keep the business running(the cash genuinely available to owners). We track whether it grows over time, averaging several years so a single outlier year doesn’t distort the trend, and we discount growth that comes off an inconsistent base.'],
+  ['Owner earnings', 'Buffett’s preferred profit measure: net income, plus non-cash charges like depreciation, minus the capital spending required just to sustain the business. It approximates the cash an owner could withdraw each year without impairing operations. Owner earnings are often a truer read on earnings than reported net income.'],
+  ['Operating margin stability', 'Operating margin is operating profit as a percentage of revenue. This rewards companies whose margins stay consistent (and ideally high) year to year. This metric is a marker of pricing power and predictable economics and penalizes erratic margins that point to a cyclical or commoditized business.'],
+  ['Debt levels', 'Looks at leverage/debt relative to equity, and net debt relative to earnings. Modest debt, or a net cash position, is safer and more flexible; heavy leverage magnifies risk in a downturn or a rising-rate environment, no matter how profitable the company is today.'],
+  ['Interest coverage', 'How comfortably operating profit covers the company’s interest payments. A high ratio means the business can service its debt even if earnings fall; a low ratio means those interest obligations could become a strain in a weak year.'],
+  ['Earnings consistency', 'Rewards companies that stay profitable year after year with steadily growing revenue. Reliable, growing earnings are a hallmark of a durable business, while frequent losses or shrinking sales are penalized as signs of fragility.'],
+  ['Share count trend', 'Tracks whether shares outstanding are shrinking or growing. Buybacks reduce the share count and increase each shareholder’s stake (a return of capital); persistent issuance dilutes existing owners. We adjust for stock splits so they aren’t mistaken for dilution.'],
+  ['Return on equity (ROE)', 'Net income as a percentage of shareholders’ equity(the profit the company generates on owners’ capital). Higher is better, but we cap the score(at 30%), since ROE can be inflated with leverage, and debt is evaluated separately.'],
+  ['Valuation vs intrinsic value', 'Compares the current price to an estimate of intrinsic value from a discounted-cash-flow model, producing a “margin of safety” (the size of the discount you’re getting). We read the P/E ratio in context, against peers, sector, growth, and business quality, rather than treating a low P/E as automatically cheap or a high one as automatically expensive.'],
 ];
 
 async function renderMethodology() {
