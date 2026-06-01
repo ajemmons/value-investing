@@ -237,7 +237,7 @@ function valuationBlock(v) {
   const mosClass = isNum(mos) ? (mos >= 0 ? 'mos-pos' : 'mos-neg') : '';
   const a = v.assumptions || {};
   return `
-    <h4>Intrinsic value (DCF on ${esc(v.baseSource || 'cash flow')})</h4>
+    <h4>Intrinsic value (DCF on ${esc(v.baseSource || 'cash flow')}${v.basis ? ` · ${esc(v.basis)}` : ''})</h4>
     <div class="val-grid">
       <div class="val-cell"><div class="k">Conservative</div><div class="v">${money(v.scenarios?.conservative)}</div></div>
       <div class="val-cell"><div class="k">Base</div><div class="v">${money(v.scenarios?.base)}</div></div>

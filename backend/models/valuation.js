@@ -75,11 +75,34 @@ export function valueCompany(model, ctx = {}) {
   const m = model.metrics;
   const shares = isNum(ctx.sharesOutstanding) ? ctx.sharesOutstanding : m.sharesLatest;
 
-  // Prefer owner earnings; fall back to FCF, then net income.
-  const base =
-    [m.ownerEarningsLatest, m.fcfLatest, m.netIncomeLatest].find((x) => isNum(x) && x > 0) ?? null;
-  const baseSource =
-    base === m.ownerEarningsLatest ? 'owner earnings' : base === m.fcfLatest ? 'free cash flow' : 'net income';
+  // Choose the starting cash flow for the DCF. Prefer TRAILING-TWELVE-MONTH
+  // figures (this valuation step is the only place TTM is used, so the price is
+  // matched against current-ish earnings); fall back to the latest annual.
+  const ttm = ctx.ttm;
+  let base = null;
+  let baseSource = 'net income';
+  let basis = `FY${m.latestFiscalYear ?? ''}`;
+  if (ttm) {
+    const cands = [
+      [ttm.ownerEarnings, 'owner earnings'],
+      [ttm.fcf, 'free cash flow'],
+      [ttm.netIncome, 'net income'],
+    ];
+    const hit = cands.find(([v]) => isNum(v) && v > 0);
+    if (hit) {
+      [base, baseSource] = hit;
+      basis = ttm.fresh ? `trailing 12 months${ttm.end ? ` (through ${ttm.end})` : ''}` : `FY${m.latestFiscalYear ?? ''}`;
+    }
+  }
+  if (!isNum(base)) {
+    base = [m.ownerEarningsLatest, m.fcfLatest, m.netIncomeLatest].find((x) => isNum(x) && x > 0) ?? null;
+    baseSource =
+      base === m.ownerEarningsLatest ? 'owner earnings' : base === m.fcfLatest ? 'free cash flow' : 'net income';
+    basis = `FY${m.latestFiscalYear ?? ''}`;
+  }
+
+  // TTM earnings per share for the contextual P/E (falls back to annual EPS).
+  const ttmEps = ttm && isNum(ttm.netIncome) && isNum(shares) && shares > 0 ? ttm.netIncome / shares : null;
 
   // Historical growth signal, dampened toward prudence and clamped.
   const histGrowth = [m.ownerEarningsCagr, m.fcfCagr, m.revenueCagr].find((x) => isNum(x));
@@ -131,18 +154,19 @@ export function valueCompany(model, ctx = {}) {
   const marginOfSafety = isNum(rawMargin) ? clamp(rawMargin, -0.95, MOS_CAP, rawMargin) : null;
   const marginCapped = isNum(rawMargin) && rawMargin > MOS_CAP;
 
-  const peContext = evaluatePeContext({ model, price, sector: ctx.sector, peerPe: ctx.peerPe });
+  const peContext = evaluatePeContext({ model, price, sector: ctx.sector, peerPe: ctx.peerPe, eps: ttmEps });
 
   return {
     available: isNum(basePerShare),
     baseSource,
+    basis, // "trailing 12 months (through …)" or "FY####"
     assumptions: {
       startingCashFlow: base,
       stage1GrowthBase: clamp(g * 0.8, 0, 0.12, 0.04),
       discountRate,
       terminalGrowth,
       years: 10,
-      note: `Two-stage DCF on ${baseSource}; growth dampened from historical and clamped for prudence.`,
+      note: `Two-stage DCF on ${baseSource} (${basis}); growth dampened from historical and clamped for prudence.`,
     },
     scenarios: {
       conservative: scenarios.conservative.perShare,
@@ -163,9 +187,10 @@ export function valueCompany(model, ctx = {}) {
  *
  * @returns {{pe:number|null, sectorPe:number, adjustment:number, summary:string}}
  */
-export function evaluatePeContext({ model, price, sector, peerPe }) {
+export function evaluatePeContext({ model, price, sector, peerPe, eps: epsOverride }) {
   const m = model.metrics;
-  const eps = m.epsLatest;
+  // Prefer a TTM EPS (matches the live price); fall back to latest annual EPS.
+  const eps = isNum(epsOverride) && epsOverride > 0 ? epsOverride : m.epsLatest;
   const pe = isNum(price) && isNum(eps) && eps > 0 ? price / eps : null;
   const sectorPe = isNum(peerPe) ? peerPe : SECTOR_PE_BASELINE[sector] || SECTOR_PE_BASELINE.Unknown;
 

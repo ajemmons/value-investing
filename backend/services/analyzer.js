@@ -64,6 +64,7 @@ export async function analyzeTicker(ticker, riskLevel = 'moderate', keys = {}) {
       sector: sectorInfo.sector,
       netCash,
       riskLevel,
+      ttm: fin.ttm, // TTM earnings for valuation/P-E only; metrics stay annual
     });
 
     const scored = scoreCompany(model, valuation, riskWeights);
