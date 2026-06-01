@@ -962,17 +962,24 @@ main {
 }
 .pd-metric {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: 0.6rem;
   padding: 0.34rem 0;
   border-bottom: 1px solid var(--border);
   font-size: 0.85rem;
 }
 .pd-metric-label {
   color: var(--text-dim);
+  flex: 1;
+}
+.pd-metric-fig {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .pd-metric-score {
+  width: 2.6em;
+  text-align: right;
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }

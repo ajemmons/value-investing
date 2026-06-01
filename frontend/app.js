@@ -582,11 +582,28 @@ async function togglePortfolioDetail(row) {
 // Compact, abbreviated detail shown when a portfolio row is expanded:
 // the ten metric scores in a tight grid + a one-line valuation summary.
 function portfolioDetailCard(r) {
+  const m = r.metrics || {};
+  // The actual underlying figure shown alongside each metric's 0–100 score.
+  const ic = m.interestCoverage;
+  const figFor = {
+    roic: pct(m.roic),
+    fcfGrowth: pct(m.fcfCagr),
+    ownerEarnings: pct(m.ownerEarningsCagr),
+    marginStability: pct(m.operatingMarginAvg),
+    debt: isNum(m.debtToEquity) ? `${m.debtToEquity.toFixed(2)}× D/E` : '—',
+    interestCoverage: ic === Infinity ? '∞' : isNum(ic) ? `${num(ic, 1)}×` : '—',
+    earningsConsistency: pct(m.earningsPositiveRatio, 0),
+    shareCount: isNum(m.shareCountTrend) ? `${pct(m.shareCountTrend)}/yr` : '—',
+    roe: pct(m.roe),
+    valuation: isNum(m.marginOfSafety) ? `${pct(m.marginOfSafety, 0)} MoS` : '—',
+  };
+
   const metrics = (r.breakdown || [])
     .map((b) => {
       const has = b.available && isNum(b.score);
       return `<div class="pd-metric${has ? '' : ' na'}">
         <span class="pd-metric-label">${esc(b.label)}</span>
+        <span class="pd-metric-fig">${figFor[b.key] ?? ''}</span>
         <span class="pd-metric-score" style="color:${scoreColor(b.score)}">${has ? b.score : 'N/A'}</span>
       </div>`;
     })
